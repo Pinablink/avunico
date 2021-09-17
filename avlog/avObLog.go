@@ -24,6 +24,11 @@ func obterDataCorrente() string {
 	return time1.Format(formatDate)
 }
 
+//
+func New() *AvLog {
+	return &AvLog{}
+}
+
 func (avlog *AvLog) IniciarLogger() {
 
 	dataDoLog = obterDataCorrente()
@@ -55,6 +60,7 @@ func (avlog *AvLog) fecharLogAtual() {
 	}
 }
 
+// Retorna o Logger tipo Info
 func (avlog *AvLog) Info() *log.Logger {
 
 	data := obterDataCorrente()
@@ -69,6 +75,7 @@ func (avlog *AvLog) Info() *log.Logger {
 	return avlog.infoLogger
 }
 
+// Retorna o Logger tipo Warning
 func (avlog *AvLog) Warning() *log.Logger {
 
 	data := obterDataCorrente()
@@ -83,6 +90,7 @@ func (avlog *AvLog) Warning() *log.Logger {
 	return avlog.warningLogger
 }
 
+// Retorna o Logger tipo Error
 func (avlog *AvLog) Error() *log.Logger {
 
 	data := obterDataCorrente()

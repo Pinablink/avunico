@@ -62,3 +62,39 @@ IGNORE 1 LINES
 #### Variaveis de Ambiente
 
 Os dados necessários para acesso ao banco de dados na minha configuração são mantidos como Variaveis de Ambiente do Sistema Operacional. Acredito que essa seja uma boa prática. No entanto fica a critério do usuário essa configuração.
+
+#### Dependências 
+
+```
+go get -u github.com/go-sql-driver/mysql
+
+```
+
+
+
+
+
+teste := avmodels.FeiraLivre{
+		ID:         "901",
+		LONGI:      "-1220",
+		LATI:       "-23322",
+		SETCENS:    "T",
+		AREAP:      "A",
+		CODDIST:    "C",
+		DISTRITO:   "D",
+		CODSUBPREF: "C",
+		SUBPREFE:   "SS",
+		REGIAO5:    "RE",
+		REGIAO8:    "R8",
+		NOME_FEIRA: "TESTE",
+		REGISTRO:   "TR",
+		LOGRADOURO: "TL",
+		NUMERO:     "NN",
+		BAIRRO:     "BB",
+		REFERENCIA: "RTT",
+	}
+
+testeUpdate := avmodels.FeiraLivre{
+		ID:         "901",
+		NOME_FEIRA: "UM LUGAR LEGAL",
+}
