@@ -88,12 +88,17 @@ Após todas as configurações e inclusão dos dados na base. Utilize uma aplica
 
 ###  Realizando as chamadas
 
+![Alt text](img/MetodoGet.png)
+
 ```
 Método GET
 
-localhost:3000/api/v1/feiralivre/DISTRITO/PENHA
+localhost:3000/api/v1/feiralivre/DISTRITO/PINHEIROS
 
 ```
+____
+
+![Alt text](img/MetodoPut.png)
 
 ```
 Método PUT
@@ -108,13 +113,20 @@ localhost:3000/api/v1/feiralivre/30
 }
 
 ```
+_____
+
+![Alt text](img/MetodoDelete.png)
 
 ```
 Método DELETE
 
-localhost:3000/api/v1/feiralivre/12
+localhost:3000/api/v1/feiralivre/30
 
 ```
+_______
+
+
+![Alt text](img/MetodoPost.png)
 
 ```
 Método Post
@@ -140,3 +152,8 @@ Método Post
 	}
 
 ```
+_____
+
+#### Teste Unitário
+
+EM DESENVOLVIMENTO
