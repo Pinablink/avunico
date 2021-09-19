@@ -1,7 +1,7 @@
 
 # avunico
 # ESSA APLICAÇÃO, ASSIM COMO ESSA DOCUMENTAÇÃO, ESTÃO EM DESENVOLVIMENTO. TANTO O CÓDIGO FONTE QUANTO A DOC SERÃO EVOLUÍDOS E REVISADOS 
-Microserviço que disponbiliza acesso a dados referentes a Localização de Feiras Livres do Município de São Paulo.
+Microserviço que disponbiliza acesso a dados referentes a Localização de Feiras Livres do Município de São Paulo. A Aplicação foi desenvolvida, obedecendo o protocolo Rest. Todos as operações são executadas obedecendo os Verbos HTML. E quando é necessário a inclusão de informação, é utilizado em formato JSON. 
 
 ## Configurando alguns recursos
 ### Base de Dados
@@ -63,18 +63,63 @@ IGNORE 1 LINES
 
 Os dados necessários para acesso ao banco de dados na minha configuração são mantidos como Variaveis de Ambiente do Sistema Operacional. Acredito que essa seja uma boa prática. No entanto fica a critério do usuário essa configuração.
 
+*** As variaveis são as seguintes ***
+
+```
+strHostPort := os.Getenv("AVUNICO_HOST_PORT")
+strUsuario := os.Getenv("AVUNICO_USUARIO")
+strPass := os.Getenv("AVUNICO_PASSWORD")
+strDbName := os.Getenv("AVUNICO_DB_NAME")
+
+```
+
 #### Dependências 
+
+Para se conectar a base de dados e realizar as transações foi utilizado o pacote abaixo
 
 ```
 go get -u github.com/go-sql-driver/mysql
 
 ```
 
+#### Rodando a aplicação
 
+Após todas as configurações e inclusão dos dados na base. Utilize uma aplicação de sua preferência para fazer as chamadas aos serviços. Eu utilizo o Postman nos meus testes.
 
+###  Realizando as chamadas
 
+```
+Método GET
 
-teste := avmodels.FeiraLivre{
+localhost:3000/api/v1/feiralivre/DISTRITO/PENHA
+
+```
+
+```
+Método PUT
+
+localhost:3000/api/v1/feiralivre/30
+
+{
+		"LOGRADOURO": "NLogradouro",
+		"NUMERO":     "23222",
+		"BAIRRO":     "TesteBairro",
+		"REFERENCIA": "REF"
+}
+
+```
+
+```
+Método DELETE
+
+localhost:3000/api/v1/feiralivre/12
+
+```
+
+```
+Método Post
+
+{
 		ID:         "901",
 		LONGI:      "-1220",
 		LATI:       "-23322",
@@ -94,7 +139,4 @@ teste := avmodels.FeiraLivre{
 		REFERENCIA: "RTT",
 	}
 
-testeUpdate := avmodels.FeiraLivre{
-		ID:         "901",
-		NOME_FEIRA: "UM LUGAR LEGAL",
-}
+```

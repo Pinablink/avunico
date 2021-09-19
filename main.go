@@ -2,8 +2,9 @@ package main
 
 import (
 	"avunico/avDb"
+	"avunico/avServer"
 	"avunico/avlog"
-	"avunico/avmodels"
+	"fmt"
 	"os"
 )
 
@@ -15,6 +16,7 @@ func confLog() *avlog.AvLog {
 	return mObLog
 }
 
+//
 func confDB(refObLog *avlog.AvLog) *avDb.AvDb {
 
 	var obAvdb *avDb.AvDb
@@ -31,6 +33,11 @@ func confDB(refObLog *avlog.AvLog) *avDb.AvDb {
 
 	if strHostPortOK && strUsuarioOK && strPassOK && strDbNameOK {
 		obAvdb = avDb.New(strHostPort, strUsuario, strPass, strDbName, refObLog)
+	} else {
+		refObLog.Error().Printf("Não foi possivel configurar a base de dados.")
+		refObLog.Error().Printf("Parâmetros de configuração utilizados")
+		refObLog.Error().Printf("Usuário: %s ; Senha: %s ; Host Port: %s ; Db : %s ;", strUsuario, strPass, strHostPort, strDbName)
+		panic("Não foi possivel configurar a base de dados. Verifique os parâmetros de conexão")
 	}
 
 	return obAvdb
@@ -38,7 +45,6 @@ func confDB(refObLog *avlog.AvLog) *avDb.AvDb {
 
 // Carrega e realiza a configuração de todos os parâmtros necessários a aplicação
 func main() {
-	//mObLog.IniciarLogger()
 	var obLog *avlog.AvLog = confLog()
 	avdbData := confDB(obLog)
 	err := avdbData.Conn()
@@ -46,9 +52,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	testeUpdate := avmodels.FeiraLivre{
-		ID:         "901",
-		NOME_FEIRA: "UM LUGAR LEGAL",
-	}
-	avdbData.UpdateFeira(testeUpdate)
+
+	fmt.Println("Incializando o Servidor")
+	var avServer *avServer.AvServer = avServer.New(avdbData, obLog)
+	avServer.InitServer()
 }

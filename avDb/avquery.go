@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-//
+// Cria a Query de Inserção de uma nova feira livre na base de dados
 func CreateQueryInsert(nomeTabela string, q interface{}) string {
 
 	var insertQuery string
@@ -34,13 +34,12 @@ func CreateQueryInsert(nomeTabela string, q interface{}) string {
 
 // UPDATE `feiraslivres` SET SETCENS = 'Z', AREAP = 'Z' WHERE ID = '881'
 
-//
-func CreateQueryUpdate(nomeCampoId string, nomeTabela string, q interface{}) string {
+// Cria a Query de atualização de uma feira livre na base de dados
+func CreateQueryUpdate(valorID string, nomeTabela string, q interface{}) string {
 
 	var updateQuery string
 
 	if reflect.ValueOf(q).Kind() == reflect.Struct {
-		var valID string
 		refVal := reflect.ValueOf(q)
 		qtAtributos := refVal.NumField()
 
@@ -51,22 +50,26 @@ func CreateQueryUpdate(nomeCampoId string, nomeTabela string, q interface{}) str
 
 			if len(r.String()) > 0 {
 				campo := refVal.Type().Field(i).Name
-
-				if campo == nomeCampoId {
-					valID = r.String()
-				} else {
-					updateQuery = fmt.Sprintf("%s %s = \"%s\", ", updateQuery, campo, r.String())
-				}
-
+				updateQuery = fmt.Sprintf("%s %s = \"%s\", ", updateQuery, campo, r.String())
 			}
 
 		}
 
 		runes := []rune(updateQuery)
 		updateQuery = string(runes[:(len(runes) - 2)])
-		updateQuery = fmt.Sprintf("%s WHERE %s = \"%s\" ", updateQuery, nomeCampoId, valID)
+		updateQuery = fmt.Sprintf("%s WHERE %s = \"%s\" ", updateQuery, "ID", valorID)
 
 	}
 
 	return updateQuery
+}
+
+// Cria a Query de seleção de uma feira livre
+func CreateQuerySelect(strConsulta string, strValor string) string {
+	return fmt.Sprintf("SELECT * FROM feiraslivres WHERE %s = \"%s\"", strConsulta, strValor)
+}
+
+// Cria a Query de exclusão de uma feira livre
+func CreateQueryDelete(strId string) string {
+	return fmt.Sprintf("DELETE FROM feiraslivres WHERE ID = \"%s\"", strId)
 }

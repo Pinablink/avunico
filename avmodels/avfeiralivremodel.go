@@ -1,6 +1,6 @@
 package avmodels
 
-//
+// Modelo de com os dados de uma feira livre
 type FeiraLivre struct {
 	ID         string `json: "id"`
 	LONGI      string `json: "long"`
@@ -19,4 +19,24 @@ type FeiraLivre struct {
 	NUMERO     string `json: "numero"`
 	BAIRRO     string `json: "bairro"`
 	REFERENCIA string `json: "referencia"`
+}
+
+// Modelo com os dados de um response padrão
+type AvResponse struct {
+	Cod     int    `json: "cod"`
+	Message string `json: "message"`
+}
+
+// Modelo com os dados de um response de inclusão bem sucedida de uma feira livre
+type AvResponseFeira struct {
+	Cod     int        `json: "cod"`
+	Message string     `json: "message"`
+	ObInc   FeiraLivre `json: "obInc"`
+}
+
+// Modelo com os dados de um response de consulta
+type AvResponseConsulta struct {
+	Cod             int          `json: "cod"`
+	Message         string       `json: "message"`
+	ListaFeiraLivre []FeiraLivre `json: "listaFeiraLivre"`
 }
