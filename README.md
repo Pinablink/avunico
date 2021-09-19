@@ -1,6 +1,6 @@
 
 # avunico
-# ESSA APLICAÇÃO, ASSIM COMO ESSA DOCUMENTAÇÃO, ESTÃO EM DESENVOLVIMENTO. TANTO O CÓDIGO FONTE QUANTO A DOC SERÃO EVOLUÍDOS E REVISADOS 
+
 Microserviço que disponbiliza acesso a dados referentes a Localização de Feiras Livres do Município de São Paulo. A Aplicação foi desenvolvida, obedecendo o protocolo Rest. Todos as operações são executadas obedecendo os Verbos HTML. E quando é necessário a inclusão de informação, é utilizado em formato JSON. 
 
 ## Configurando alguns recursos
