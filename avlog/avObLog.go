@@ -19,9 +19,8 @@ type AvLog struct {
 
 func obterDataCorrente() string {
 	const formatDate = "20060102"
-	var time1 = time.Now()
-	time1 = time1.AddDate(0, 0, +1)
-	return time1.Format(formatDate)
+	var time = time.Now()
+	return time.Format(formatDate)
 }
 
 //

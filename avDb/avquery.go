@@ -32,8 +32,6 @@ func CreateQueryInsert(nomeTabela string, q interface{}) string {
 	return insertQuery
 }
 
-// UPDATE `feiraslivres` SET SETCENS = 'Z', AREAP = 'Z' WHERE ID = '881'
-
 // Cria a Query de atualização de uma feira livre na base de dados
 func CreateQueryUpdate(valorID string, nomeTabela string, q interface{}) string {
 

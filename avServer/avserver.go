@@ -32,7 +32,7 @@ func (avserver *AvServer) InitServer() {
 
 	iObLog = avserver.obLog
 	iObDb = avserver.obDb
-	fmt.Println("Inicializando os Processador de Verbos de Requisição")
+	fmt.Println("Inicializando o Processador de Verbos de Requisição")
 	avserver.obLog.Info().Printf("Inicializando os Processador de Verbos de Requisição")
 
 	mapProcessVerb = make(map[string]AvVerb)
@@ -53,8 +53,8 @@ func (avserver *AvServer) InitServer() {
 
 }
 
-//
-func validarRequest(strUrlReq string) bool {
+// Valida se a requisição esta
+func ValidarRequest(strUrlReq string) bool {
 
 	dadosReq := strings.Split(strUrlReq, "/")
 
@@ -77,7 +77,7 @@ func processRequest(w http.ResponseWriter, r *http.Request) {
 	iObLog.Info().Printf("Solicitação de Serviço recebida")
 	iObLog.Info().Printf("URL de solicitação %s", urlReq)
 
-	if validarRequest(urlReq) {
+	if ValidarRequest(urlReq) {
 		var processador AvVerb = mapProcessVerb[r.Method]
 		json.NewEncoder(w).Encode(processador.RunRequest(iObLog, iObDb, w, r))
 

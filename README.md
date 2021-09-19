@@ -156,4 +156,37 @@ _____
 
 #### Teste Unitário
 
-EM DESENVOLVIMENTO
+Alguns arquivos estão com corbetura de teste. Não contemplei todos os arquivos, pois é um assunto que preciso obter mais conhecimento
+
+
+## Comando com output no cmd
+
+```
+go test -cover ./...
+?       avunico [no test files]
+ok      avunico/avDb    (cached)        coverage: 29.3% of statements
+ok      avunico/avServer        (cached)        coverage: 7.1% of statements
+ok      avunico/avlog   1.637s  coverage: 55.3% of statements
+?       avunico/avmodels        [no test files]
+
+```
+____
+
+## Comando com relatório
+
+O comando abaixo gera um relatório de saída. Mas sua visualização não é muito amigavel. A seguir um comando que executa um Html com os dados do coverage.out
+
+```
+go test -coverprofile=coverage.out ./...
+
+```
+___
+
+## Comando para abrir o relatório para verificação da cobertura
+
+O comando abaixo executa o browser da sua maquina exibindo as func que não passaram pelo teste
+
+```
+go tool cover -html=coverage.out
+
+```

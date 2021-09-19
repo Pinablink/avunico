@@ -53,7 +53,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Incializando o Servidor")
+	fmt.Println("Inicializando o Servidor")
 	var avServer *avServer.AvServer = avServer.New(avdbData, obLog)
 	avServer.InitServer()
 }
